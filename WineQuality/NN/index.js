@@ -13,5 +13,17 @@ async function runExample() {
   x[9] = document.getElementById('box10').value;
   x[10] = document.getElementById('box11').value;
 
-  let tensorx = new onnx.Tensor(x, 'float32', [1, 11])
+  let tensorx = new onnx.Tensor(x, 'float32', [1, 11]);
+  let session = new onnx.InferenceSession();
+await session.loadModel("./DLnet_WineData.onnx");
+let outputMap = await session.run([tensorX]);
+let outputData = outputMap.get('output1');
+let predictions = document.getElementById('predictions');
+predictions.innerHTML = ` <hr> Got an output tensor with values: <br>
+<table>
+    <tr>
+        <td> Rating of Wine Quality </td>
+        <td id="td0"> ${outputData.data[0].toFixed()} </td>
+    </tr>
+</table>`;
 }
