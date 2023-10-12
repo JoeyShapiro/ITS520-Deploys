@@ -1,6 +1,6 @@
 
 async function runExample() {
-  var x = new Float32Array(11);
+  var x = new Float32Array(1);
   x[0] = document.getElementById('box1').value;
   x[1] = document.getElementById('box2').value;
   x[2] = document.getElementById('box3').value;
